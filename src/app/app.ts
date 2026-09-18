@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
+  imports: [RouterOutlet,FormsModule],
   selector: 'app-root',
-  imports: [FormsModule, RouterOutlet],
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  saludar = '';
+  protected readonly title = signal('holaMundoB');
+  saludar:string = "mundo";
 }
