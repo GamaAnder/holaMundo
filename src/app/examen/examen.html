@@ -1,0 +1,40 @@
+<h2>Cree un examen:</h2>
+<form [formGroup]="formulario" (ngSubmit)="guardarUsuario()">
+     <label>Nota:</label>
+    <input type="text" formControlName="nota">
+    @if(formulario.get('nota')?.invalid 
+    && formulario.get('nota')?.touched){
+        <div> La nota del examen es obligatorio</div>
+    }
+    <br><br>
+    <label>Carnet:</label>
+    <input type="carnet" formControlName="carnet">
+    @if(formulario.get('carnet')?.invalid 
+    && formulario.get('carnet')?.touched){
+        <div> El carnet es obligatorio</div>
+    }
+
+    <br><br>
+    <button type = "submit">Ingresar</button>
+
+</form>
+
+<h2>Examenes agregados:</h2>
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Nota</th>
+        <th>Carnet</th> 
+        <th>Fecha examen</th>                
+    </thead>
+    <tbody>
+        @for(examen of examenes; track examen.idexamen){
+        <tr>
+            <td>{{examen.idexamen}}</td>
+            <td>{{examen.nota}}</td>
+            <td>{{examen.carnet}}</td>            
+            <td>{{examen.fechaExamen | date}}</td>
+        </tr>
+        }
+    </tbody>
+</table>

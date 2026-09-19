@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +13,9 @@ import { AnuncioService } from '../services/anuncio.service';
   templateUrl: './anuncio.html',
   styleUrl: './anuncio.css'
 })
-export class Anuncio {
+export class Anuncio implements OnInit {
+
+  anuncios: any[] = [];
 
   anuncio = {
     idAnuncio: 0,
@@ -25,6 +27,10 @@ export class Anuncio {
 
   constructor(private anuncioService: AnuncioService) {}
 
+  ngOnInit(): void {
+    this.buscarAnuncios();
+  }
+
   seleccionarImagen(event: any) {
 
     const archivo = event.target.files[0];
@@ -34,12 +40,7 @@ export class Anuncio {
       const reader = new FileReader();
 
       reader.onload = () => {
-
         this.anuncio.imagen = reader.result as string;
-
-        console.log('Imagen convertida a Base64:');
-        console.log(this.anuncio.imagen);
-
       };
 
       reader.readAsDataURL(archivo);
@@ -56,6 +57,7 @@ export class Anuncio {
 
           alert('Anuncio guardado correctamente');
 
+          this.buscarAnuncios();
         },
 
         error: (error: any) => {
@@ -63,6 +65,26 @@ export class Anuncio {
           console.error('Error:', error);
 
           alert('Error al guardar el anuncio');
+
+        }
+      });
+  }
+
+  buscarAnuncios() {
+
+    this.anuncioService.buscar()
+      .subscribe({
+        next: (respuesta: any[]) => {
+
+          console.log('Anuncios:', respuesta);
+
+          this.anuncios = respuesta;
+
+        },
+
+        error: (error: any) => {
+
+          console.error('Error al consultar anuncios:', error);
 
         }
       });
