@@ -1,5 +1,5 @@
 <h2>Cree un examen:</h2>
-<form [formGroup]="formulario" (ngSubmit)="guardarUsuario()">
+<form [formGroup]="formulario" (ngSubmit)="guardarExamen()">
      <label>Nota:</label>
     <input type="text" formControlName="nota">
     @if(formulario.get('nota')?.invalid 
