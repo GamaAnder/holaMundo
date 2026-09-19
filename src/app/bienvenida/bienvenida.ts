@@ -21,9 +21,9 @@ export class Bienvenida implements OnInit{
       constructor(private fb:FormBuilder, http:HttpClient){
         this.formulario = this.fb.group(
           {
-            email:['',[Validators.required,Validators.email]],
-            password:['',Validators.required],
-            nombre:['',Validators.required]
+            correo:['',[Validators.required,Validators.email]],
+            contrasena:['',Validators.required],
+            nombres:['',Validators.required]
           }
 
         );
@@ -52,8 +52,8 @@ export class Bienvenida implements OnInit{
       }
 
       mostrar(data:any){
-        if(data?.idusuario){
-          alert("Usuario creado con el id: "+data.idusuario);
+        if(data?.idUsuario){
+          alert("Usuario creado con el id: "+data.idUsuario);
           this.buscarUsuarios();
         }
         else{

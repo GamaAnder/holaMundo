@@ -1,24 +1,24 @@
 <h2>Cree un usuario nuevo:</h2>
 <form [formGroup]="formulario" (ngSubmit)="guardarUsuario()">
-     <label>Nombre:</label>
-    <input type="text" formControlName="nombre">
-    @if(formulario.get('nombre')?.invalid 
-    && formulario.get('nombre')?.touched){
+     <label>Nombres:</label>
+    <input type="text" formControlName="nombres">
+    @if(formulario.get('nombres')?.invalid 
+    && formulario.get('nombres')?.touched){
         <div> El nombre es obligatorio</div>
     }
     <br><br>
-    <label>Email:</label>
-    <input type="email" formControlName="email">
-    @if(formulario.get('email')?.invalid 
-    && formulario.get('email')?.touched){
-        <div> El email es obligatorio</div>
+    <label>Correo:</label>
+    <input type="correo" formControlName="correo">
+    @if(formulario.get('correo')?.invalid 
+    && formulario.get('correo')?.touched){
+        <div> El correo es obligatorio</div>
     }
     <br><br>
-     <label>Password:</label>
-    <input type="password" formControlName="password">
-    @if(formulario.get('password')?.invalid 
-    && formulario.get('password')?.touched){
-        <div> El password es obligatorio</div>
+     <label>Contrasena:</label>
+    <input type="contrasena" formControlName="contrasena">
+    @if(formulario.get('contrasena')?.invalid 
+    && formulario.get('contrasena')?.touched){
+        <div> El contrasena es obligatorio</div>
     }
 
     <br><br>
@@ -31,17 +31,20 @@
     <thead>
         <th>Id</th>
         <th>Nombre</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Fecha creacion</th>
+        <th>Apellidos</th>        
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Contrasena</th>
     </thead>
     <tbody>
-        @for(usuario of usuarios; track usuario.idusuario){
+        @for(usuario of usuarios; track usuario.idUsuario){
         <tr>
-            <td>{{usuario.idusuario}}</td>
-            <td>{{usuario.nombre}}</td>
-            <td>{{usuario.email}}</td>
-            <td>{{usuario.password}}</td>
+            <td>{{usuario.idUsuario}}</td>
+            <td>{{usuario.nombres}}</td>
+            <td>{{usuario.apellidos}}</td>            
+            <td>{{usuario.correo}}</td>
+            <td>{{usuario.telefono}}</td>            
+            <td>{{usuario.contrasena}}</td>
             <td>{{usuario.fechaCreacion | date}}</td>
         </tr>
         }

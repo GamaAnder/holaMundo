@@ -18,8 +18,8 @@ export class Login {
     constructor(private fb:FormBuilder, http:HttpClient){
       this.formulario = this.fb.group(
         {
-          email:['',[Validators.required,Validators.email]],
-          password:['',Validators.required]
+          correo:['',[Validators.required,Validators.email]],
+          contrasena:['',Validators.required]
         }
 
       );
@@ -39,7 +39,7 @@ export class Login {
     }
 
     validar(usuario:any){
-      if(usuario?.idusuario){
+      if(usuario?.idUsuario){
         location.href = "/bienvenida";
       }
       else{
