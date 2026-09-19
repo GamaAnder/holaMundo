@@ -1,0 +1,63 @@
+<h2>Crear anuncio</h2>
+
+<hr>
+
+<label>Título:</label>
+<br>
+
+<input
+  type="text"
+  [(ngModel)]="anuncio.titulo"
+  name="titulo"
+>
+
+<br><br>
+
+<label>Descripción:</label>
+<br>
+
+<textarea
+  [(ngModel)]="anuncio.descripcion"
+  name="descripcion">
+</textarea>
+
+<br><br>
+
+<label>Fecha de publicación:</label>
+<br>
+
+<input
+  type="date"
+  [(ngModel)]="anuncio.fechaPublicacion"
+  name="fechaPublicacion"
+>
+
+<br><br>
+
+<label>Seleccione una imagen:</label>
+<br>
+
+<input
+  type="file"
+  accept="image/*"
+  (change)="seleccionarImagen($event)"
+>
+
+<br><br>
+
+<div *ngIf="anuncio.imagen">
+
+  <p>Vista previa:</p>
+
+  <img
+    [src]="anuncio.imagen"
+    width="300"
+  >
+
+</div>
+
+<br>
+
+<button type="button" (click)="guardar()">
+  Guardar anuncio
+</button>
