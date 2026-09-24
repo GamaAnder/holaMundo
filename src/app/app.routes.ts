@@ -7,6 +7,9 @@ import { Examen } from './examen/examen';
 export const routes: Routes = [
     {path:"", component:Login},
     {path:"bienvenida", component:Bienvenida},
-    {path:"anuncio", component: Examen},
-    {path:"anuncio", component: Anuncio}
+    {path:"anuncio", component: Anuncio},
+    {path:"examen", component: Examen},
+
+
+
 ];

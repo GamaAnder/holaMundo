@@ -21,7 +21,7 @@ export class Examen implements OnInit{
       constructor(private fb:FormBuilder, http:HttpClient){
         this.formulario = this.fb.group(
           {
-            carnet:['',[Validators.required,Validators.email]],
+            carnet:['',[Validators.required,Validators.nullValidator]],
             nota:['',Validators.required],
           }
 
