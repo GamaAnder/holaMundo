@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,8 @@ export class Bienvenida implements OnInit{
 
     usuarios:any = [];
 
-      constructor(private fb:FormBuilder, http:HttpClient){
+      constructor(private fb:FormBuilder, http:HttpClient,
+        private cdr: ChangeDetectorRef){
         this.formulario = this.fb.group(
           {
             correo:['',[Validators.required,Validators.email]],
@@ -37,9 +38,14 @@ export class Bienvenida implements OnInit{
 
       buscarUsuarios(){
         this.http.get("http://localhost:8080/usuario/buscar").subscribe(
-          data => this.usuarios = data
+          data => this.mostrarUsuarios(data)
         )
       }
+
+      mostrarUsuarios(usuarios:any){
+        this.usuarios = usuarios;
+        this.cdr.detectChanges;
+       }
 
       guardarUsuario(){
         if(this.formulario.valid){
