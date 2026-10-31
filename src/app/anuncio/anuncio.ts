@@ -22,7 +22,8 @@ export class Anuncio implements OnInit {
     titulo: '',
     descripcion: '',
     fechaPublicacion: '',
-    imagen: ''
+    imagen: '',
+    tipo: ''
   };
 
   constructor(private anuncioService: AnuncioService) {}
@@ -71,15 +72,11 @@ export class Anuncio implements OnInit {
   }
 
   buscarAnuncios() {
-
     this.anuncioService.buscar()
       .subscribe({
         next: (respuesta: any[]) => {
-
           console.log('Anuncios:', respuesta);
-
           this.anuncios = respuesta;
-
         },
 
         error: (error: any) => {

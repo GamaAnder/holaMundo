@@ -1,1 +1,45 @@
-<p>genero works!</p>
+<body style="background-color: lightblue;">
+    <h1>Hola: {{genero?.nombre}}</h1>
+    <div class="genero-container">
+
+        <h2>Cree un nuevo genero:</h2>
+        <form [formGroup]="formulario" (ngSubmit)="guardarGenero()">
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Nombre:</label>
+                    <input class="form-control" type="text" formControlName="nombre">
+                    @if(formulario.get('nombre')?.invalid
+                    && formulario.get('nombre')?.touched){
+                    <div>El nombre es obligatorio</div>
+                    }
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+
+        </form>
+        <h2>Generos creados:</h2>
+
+        <table class="tabla-genero">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Eliminar genero</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(genero of generos; track genero.idGenero){
+                <tr>
+                    <td>{{genero.idGenero}}</td>
+                    <td>{{genero.nombre}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" Danger
+                            (click)="eliminarGenero(genero.idGenero)">Eliminar</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

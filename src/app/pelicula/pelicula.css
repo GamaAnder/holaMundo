@@ -1,0 +1,33 @@
+.pelicula-container {
+  width: 400px;
+  margin: 30px;
+}
+
+.pelicula-tarjeta-container {
+  width: 500%;
+  max-width: 50%;
+  overflow-x: hidden;
+}
+
+.tabla-peliculas img {
+  width: 300px;
+  height: 500px;
+  border-radius: 8px;
+}
+
+.tabla-peliculas {
+  width: 100%;
+  border-spacing: 10px 0;
+  margin-top: 10px;
+}
+
+.tabla-peliculas th {
+  padding: 15px 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla-peliculas td {
+  padding: 15px 20px;
+  vertical-align: middle;
+}

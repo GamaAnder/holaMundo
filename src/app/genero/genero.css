@@ -1,0 +1,15 @@
+.genero-container {
+  width: 500px;
+  margin: 50px;
+}
+
+.tabla-genero th {
+  padding: 15px 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla-genero td {
+  padding: 15px 20px;
+  vertical-align: middle;
+}

@@ -1,91 +1,70 @@
+<body style="background-color: rgb(161, 226, 250);">
 <h2>Crear anuncio</h2>
-
+<div class="anuncio-container">
 <hr>
 
 <label>Título:</label>
 <br>
-<input
-  type="text"
-  [(ngModel)]="anuncio.titulo"
-  name="titulo"
->
+<input type="text" class="form-control" [(ngModel)]="anuncio.titulo" name="titulo">
+
+<br><br>
+
+<label>Tipo:</label>
+<br>
+<input type="text" class="form-control" [(ngModel)]="anuncio.tipo" name="tipo">
 
 <br><br>
 
 <label>Descripción:</label>
 <br>
-<textarea
-  [(ngModel)]="anuncio.descripcion"
-  name="descripcion">
+<textarea class="form-control" [(ngModel)]="anuncio.descripcion" name="descripcion">
 </textarea>
 
 <br><br>
 
 <label>Fecha de publicación:</label>
 <br>
-<input
-  type="date"
-  [(ngModel)]="anuncio.fechaPublicacion"
-  name="fechaPublicacion"
->
+<input type="date" class="form-control" [(ngModel)]="anuncio.fechaPublicacion" name="fechaPublicacion">
 
 <br><br>
 
 <label>Seleccione una imagen:</label>
 <br>
-<input
-  type="file"
-  accept="image/*"
-  (change)="seleccionarImagen($event)"
->
-
+<input  type="file" accept="image/*" (change)="seleccionarImagen($event)">
 <br><br>
 
 <div *ngIf="anuncio.imagen">
-
   <p>Vista previa:</p>
 
-  <img
-    [src]="anuncio.imagen"
-    width="300"
-  >
+  <img [src]="anuncio.imagen" width="300">
 
 </div>
 
 <br>
 
-<button type="button" (click)="guardar()">
-  Guardar anuncio
-</button>
+<button type="button" class="btn btn-primary" (click)="guardar()"> Guardar anuncio </button>
 
 
 <hr>
-
+</div>
+<div class="anuncio-tarjeta-container">
 <h2>Consulta de Anuncios</h2>
 
 <div *ngIf="anuncios.length === 0">
   <p>No hay anuncios publicados.</p>
 </div>
+      <div *ngFor="let anuncio of anuncios">
+        <h3 class="card-title">{{ anuncio.titulo }}</h3>
 
-<div *ngFor="let anuncio of anuncios">
+        <p class="card-text"> {{ anuncio.descripcion }}</p>
+        <p class="card-text"> {{ anuncio.tipo }}</p>
 
-  <h3>{{ anuncio.titulo }}</h3>
+        <img *ngIf="anuncio.imagen" [src]="anuncio.imagen" width="300">
 
-  <p>
-    {{ anuncio.descripcion }}
-  </p>
-
-  <img
-    *ngIf="anuncio.imagen"
-    [src]="anuncio.imagen"
-    width="300"
-  >
-
-  <p>
-    <strong>Fecha de publicación:</strong>
-    {{ anuncio.fechaPublicacion | date:'dd/MM/yyyy' }}
-  </p>
-
+        <p>
+          <strong class="card-text"> <small class="text-body-secondary" >Fecha de publicación:</small></strong>
+          {{ anuncio.fechaPublicacion | date:'dd/MM/yyyy' }}</p> 
   <hr>
-
 </div>
+</div>
+</body>

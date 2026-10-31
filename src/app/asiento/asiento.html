@@ -1,0 +1,60 @@
+<body style="background-color: lightblue;">
+    <div class="asiento-container">
+
+        <h2>Cree un nuevo asiento:</h2>
+        <form [formGroup]="formulario" (ngSubmit)="guardarAsiento()">
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Fila:</label>
+                    <input class="form-control" type="text" formControlName="fila">
+                    @if(formulario.get('fila')?.invalid
+                    && formulario.get('fila')?.touched){
+                    <div>La fila es obligatorio</div>
+                    }
+                </div>
+
+                <div style="flex: 1;">
+                    <label class="form-label">Numero:</label>
+                    <input class="form-control" type="text" formControlName="numero">
+                    @if(formulario.get('numero')?.invalid
+                    && formulario.get('numero')?.touched){
+                    <div>El asiento es obligatorio</div>
+                    }
+                </div>
+
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+
+        </form>
+        <h2>Asiento creado:</h2>
+
+        <table class="tabla-asiento">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Fila</th>
+                    <th>Numero</th>
+                    <th>Eliminar asiento</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(asiento of asientos; track asiento.idAsiento){
+                <tr>
+                    <td>{{asiento.idAsiento}}</td>
+                    <td>{{asiento.fila}}</td>
+                    <td>{{asiento.numero}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" Danger
+                            (click)="eliminarAsiento(asiento.idAsiento)">Eliminar</button>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

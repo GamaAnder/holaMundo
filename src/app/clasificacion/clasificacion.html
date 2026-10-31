@@ -1,1 +1,48 @@
-<p>clasificacion works!</p>
+<body style="background-color: lightblue;">
+    <div class="calificacion-container">
+
+        <h2>Cree una clasificacion nueva:</h2>
+        <form [formGroup]="formulario" (ngSubmit)="guardarClasificacion()">
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Nombre:</label>
+                    <input class="form-control" type="text" formControlName="nombre">
+                    @if(formulario.get('nombre')?.invalid
+                    && formulario.get('nombre')?.touched){
+                    <div>El nombre es obligatorio</div>
+                    }
+                </div>
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+
+        </form>
+        <h2>Clasificacion creada:</h2>
+
+        <table class="tabla-calificacion">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Eliminar clasificacion</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(clasificacion of clasificaciones; track clasificacion.idClasificacion){
+                <tr>
+                    <td>{{clasificacion.idClasificacion}}</td>
+                    <td>{{clasificacion.nombre}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" Danger
+                            (click)="eliminarClasificacion(clasificacion.idClasificacion)">Eliminar</button>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

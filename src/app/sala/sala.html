@@ -1,1 +1,71 @@
-<p>sala works!</p>
+<body style="background-color: lightblue;">
+    <h1>Hola: {{sala?.nombre}}</h1>
+    <div class="sala-container">
+
+        <h2>Cree una nuevo:</h2>
+        <form [formGroup]="formulario" (ngSubmit)="guardarSala()">
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Nombre:</label>
+                    <input class="form-control" type="text" formControlName="nombre">
+                    @if(formulario.get('nombre')?.invalid
+                    && formulario.get('nombre')?.touched){
+                    <div>El nombre es obligatorio</div>
+                    }
+                </div>
+
+                <div style="flex: 1;">
+                    <label class="form-label">Fila:</label>
+                    <input class="form-control" type="email" formControlName="filas">
+                    @if(formulario.get('filas')?.invalid
+                    && formulario.get('filas')?.touched){
+                    <div>El fila es obligatorio</div>
+                    }
+                </div>
+            </div>
+
+            <br><br>
+            <div>
+                <label class="form-label">Asientos:</label>
+                <input class="form-control" type="text" formControlName="asientosPorFila">
+                @if(formulario.get('asientosPorFila')?.invalid
+                && formulario.get('asientosPorFila')?.touched){
+                <div>La asiento es obligatoria</div>
+                }
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+
+        </form>
+        <h2>Usuarios creados:</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Fila</th>
+                    <th>Asientos</th>
+                    <th>Eliminar sala</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(sala of salas; track sala.idSala){
+                <tr>
+                    <td>{{sala.idSala}}</td>
+                    <td>{{sala.nombre}}</td>
+                    <td>{{sala.filas}}</td>
+                    <td>{{sala.asientosPorFila}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" Danger 
+                        (click)="eliminarSala(sala.idSala)">Eliminar</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

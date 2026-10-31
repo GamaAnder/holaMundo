@@ -1,0 +1,85 @@
+<div style="background-color: rgb(161, 226, 250);">
+
+  <h2>Crear película</h2>
+
+  <div class="pelicula-container">
+    <hr>
+
+    <label>Título:</label>
+    <br>
+    <input type="text" class="form-control" [(ngModel)]="pelicula.titulo" name="titulo"><br><br>
+
+    <label>Sinopsis:</label>
+    <br>
+    <textarea class="form-control" [(ngModel)]="pelicula.sinopsis" name="sinopsis"></textarea>
+    <br>
+    <br><br>
+    <label>Duracion de la pelicula:</label>
+    <br>
+    <input type="text" class="form-control" [(ngModel)]="pelicula.duracionMinutos" name="duracionMinutos"><br><br>
+
+    <label>Seleccione una imagen:</label>
+    <br>
+    <input type="file" accept="image/*" (change)="seleccionarImagen($event)">
+    <br><br>
+
+    <div *ngIf="pelicula.imagenPromocional">
+      <p>Vista previa:</p>
+
+      <img [src]="pelicula.imagenPromocional" width="300">
+
+    </div>
+
+
+    <br>
+
+    <button type="button" class="btn btn-primary" (click)="guardar()">
+      Guardar película
+    </button>
+
+    <hr>
+  </div>
+
+  <div class="pelicula-tarjeta-container">
+
+    <h2>Consulta de películas</h2>
+
+    <div *ngIf="peliculas.length === 0">
+      <p>No hay películas publicadas.</p>
+    </div>
+
+    <div style="overflow-x: auto;" *ngIf="peliculas.length > 0">
+      <table class="tabla-peliculas">
+
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Título</th>
+            <th>Sinopsis</th>
+            <th>Duración</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let pelicula of peliculas">
+
+            <td>
+              <img *ngIf="pelicula.imagenPromocional" [src]="pelicula.imagenPromocional" width="120" alt="Imagen de la película">
+              <span *ngIf="!pelicula.imagenPromocional"> Sin imagen </span>
+            </td>
+
+            <td>{{ pelicula.titulo }}</td>
+
+            <td>{{ pelicula.sinopsis }}</td>
+
+            <td>{{ pelicula.duracionMinutos }} min</td>
+
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>

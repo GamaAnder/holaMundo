@@ -1,0 +1,114 @@
+<body style="background-color: lightblue;">
+    <h1>{{funcion?.fecha}}</h1>
+    <div class="funcion-container">
+
+        <h2>Cree una nueva funcion:</h2>
+        <form [formGroup]="formulario" (ngSubmit)="guardarFuncion()">
+            <div style="display: flex; gap: 20px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Fecha:</label>
+                    <input class="form-control" type="date" formControlName="fecha">
+                    @if(formulario.get('fecha')?.invalid
+                    && formulario.get('fecha')?.touched){
+                    <div>La fecha es obligatoria</div>
+                    }
+                </div>
+
+                <div style="flex: 1;">
+                    <label class="form-label">Hora:</label>
+                    <input class="form-control" type="time" formControlName="hora">
+                    @if(formulario.get('hora')?.invalid
+                    && formulario.get('hora')?.touched){
+                    <div>La hora es obligatoria</div>
+                    }
+                </div>
+            </div>
+
+            <br><br>
+            <div>
+                <label class="form-label">Precio de entrada:</label>
+                <input class="form-control" type="text" formControlName="precioEntrada">
+                @if(formulario.get('precioEntrada')?.invalid
+                && formulario.get('precioEntrada')?.touched){
+                <div>El precio de la entrada es obligatorio</div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Seleccione la Sala:</label>
+                <select formControlName="idSala" class="form-select">
+                    <option [value]="null" disabled selected>Menu Desplegable </option>
+                    @for(sala of salas; track sala.idSala){
+                    <option [value]="sala.idSala">{{ sala.nombre }}</option>
+                    }
+                </select>
+                @if(formulario.get('idSala')?.invalid && formulario.get('idSala')?.touched){
+                <div class="text-danger small mt-1">La sala es obligatoria</div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Seleccione la Película:</label>
+                <select formControlName="idPelicula" class="form-select">
+                    <option [value]="null" disabled selected>Menu Desplegable </option>
+                    @for(pelicula of peliculas; track pelicula.idPelicula){
+                    <option [value]="pelicula.idPelicula">{{ pelicula.titulo }}</option>
+                    }
+                </select>
+                @if(formulario.get('idPelicula')?.invalid && formulario.get('idPelicula')?.touched){
+                <div class="text-danger small mt-1">La pelicula es obligatoria</div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Seleccione la Fila:</label>
+                <select formControlName="idAsiento" class="form-select">
+                    <option [value]="null" disabled selected>Menu Desplegable </option>
+                    @for(asiento of asientos; track asiento.idAsiento){
+                    <option [value]="asiento.idAsiento">{{ asiento.fila }}</option>
+                    }
+                </select>
+                @if(formulario.get('idAsiento')?.invalid && formulario.get('idAsiento')?.touched){
+                <div class="text-danger small mt-1">El asiento es obligatoria</div>
+                }
+            </div>            
+
+            <br><br>
+
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+
+        </form>
+        <h2>Funciones creadas:</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Precio de entrada</th>
+                    <th>Sala</th>
+                    <th>Pelicula</th>
+                    <th>Eliminar funcion</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(funcion of funciones; track funcion.idFunciones){
+                <tr>
+                    <td>{{funcion.idFuncion}}</td>
+                    <td>{{funcion.fecha | date}}</td>
+                    <td>{{funcion.hora}}</td>
+                    <td>{{funcion.precioEntrada}}</td>
+                    <td>{{funcion.idSala}}</td>
+                    <td>{{funcion.idPelicula | funcion :peliculas}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" Danger
+                            (click)="eliminarFuncion(funcion.idFuncion)">Eliminar</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

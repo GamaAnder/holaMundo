@@ -18,6 +18,7 @@ export class Bienvenida implements OnInit{
 
     usuarios:any = [];
 
+    usuario:any = null;
       constructor(private fb:FormBuilder, http:HttpClient,
         private cdr: ChangeDetectorRef){
         this.formulario = this.fb.group(
@@ -30,6 +31,16 @@ export class Bienvenida implements OnInit{
         );
         this.http = http;
         
+        const guardado = localStorage.getItem('usuario');
+
+        if (guardado) { try { 
+          this.usuario = JSON.parse(guardado);
+         } catch (error) { 
+          console.error('Error al recuperar el usuario:', error); 
+          localStorage.removeItem('usuario'); 
+          } 
+        }
+
       }
 
       ngOnInit(): void {
@@ -38,7 +49,10 @@ export class Bienvenida implements OnInit{
 
       buscarUsuarios(){
         this.http.get("http://localhost:8080/usuario/buscar").subscribe(
-          data => this.mostrarUsuarios(data)
+          data => {
+            this.usuarios = data;
+            this.cdr.detectChanges();
+          }
         )
       }
 
@@ -56,7 +70,7 @@ export class Bienvenida implements OnInit{
           )
         }
       }
-
+    
       mostrar(data:any){
         if(data?.idUsuario){
           alert("Usuario creado con el id: "+data.idUsuario);

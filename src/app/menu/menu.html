@@ -1,0 +1,61 @@
+@if(usuario){
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">Cine</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/bienvenida" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Bienvenida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/pelicula" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Pelicula</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/anuncio" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Anuncio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/funcion" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Funcion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/clasificacion" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Clasificacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/genero" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Genero</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/sala" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Sala</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/asiento" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }">Asiento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="#" (click)="cerrarSesion()">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">{{usuario.nombres}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</ul>
+}
+<!-- @else{
+    <div class="container">
+    <h1>Sistema de cine:</h1>
+    <hr>
+    </div>
+} -->

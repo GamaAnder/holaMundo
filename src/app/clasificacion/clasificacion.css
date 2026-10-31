@@ -1,0 +1,15 @@
+.calificacion-container {
+  width: 500px;
+  margin: 50px;
+}
+
+.tabla-calificacion th {
+  padding: 15px 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla-calificacion td {
+  padding: 15px 20px;
+  vertical-align: middle;
+}

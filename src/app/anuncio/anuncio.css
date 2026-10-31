@@ -1,0 +1,20 @@
+.anuncio-container {
+  width: 500px;
+  margin: 5px auto;
+}
+
+.anuncio-tarjeta-container {
+  width: 500px;
+  margin: 5px auto;
+}
+
+.tabla-anuncio th {
+  padding: 15px 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabla-anuncio td {
+  padding: 15px 20px;
+  vertical-align: middle;
+}
